@@ -5,6 +5,11 @@ using System.Collections.Generic;
 public class Gravitational : MonoBehaviour
 {
     public static List<Gravitational> otherGameObject;
+
+    //Speed Orbiting
+    [SerializeField] bool planet = false;
+    [SerializeField] int orbitSpeed = 1000;
+
     private Rigidbody rb;
     const float G = 0.006674f;
 
@@ -16,6 +21,12 @@ public class Gravitational : MonoBehaviour
             otherGameObject = new List<Gravitational>();
         }
         otherGameObject.Add(this);
+
+        //orbiting
+        if (!planet)
+        {
+            rb.AddForce(Vector3.left * orbitSpeed);
+        }
     }
 
     private void FixedUpdate()
